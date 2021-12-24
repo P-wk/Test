@@ -13,7 +13,8 @@ import (
 	"strconv"
 )
 
-type Nas5GSUpdateType struct { //The input structure
+//The input structure
+type Nas5GSUpdateType struct { 
 	IEI             int
 	Length          int
 	EPS_PNB_CIoT    int
@@ -22,7 +23,8 @@ type Nas5GSUpdateType struct { //The input structure
 	SMS_requested   int
 }
 
-func Encoder(ie Nas5GSUpdateType) *bytes.Buffer { //The encoder
+//The encoder
+func Encoder(ie Nas5GSUpdateType) *bytes.Buffer { 
 	octet1 := strconv.FormatInt(int64(ie.IEI), 16)
 	octet1 = Modify(octet1)
 	octet2 := strconv.FormatInt(int64(ie.Length), 16)
@@ -48,7 +50,9 @@ func Modify(s string) string { //A function used to modify output
 	return s_mod
 }
 
-func CodeCover(x int) { //the coverage test
+
+//the coverage test. In this step, I use decimal random numbers to simulate all possible situations. Among them, the possible values of IEI and length are set at [0, 255].
+func CodeCover(x int) { 
 	var par []int
 	var num int
 	var number_s string
